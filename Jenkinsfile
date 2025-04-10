@@ -2,6 +2,7 @@ pipeline {
   agent any
  
   stages {
+
       stage('Build Artifact') {
             steps {
               sh "mvn clean package -DskipTests=true"
@@ -10,4 +11,10 @@ pipeline {
         }   
     }
 }
+
+      stage('test unitaire') {
+        steps {
+          sh "mvn test"
+        }
+      }
 // Compris
