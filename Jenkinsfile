@@ -22,6 +22,18 @@ pipeline {
         }
       }
 //--------------------------
+      stage('Docker Build and Push') {
+        steps {
+          withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD_Formation13', variable: 'password')]) {
+            sh 'sudo docker login -u ybm2i -p $password'
+            sh 'printenv'
+            sh 'sudo docker build -t ybm2i/devops-app:""$GIT_COMMIT"" .'
+            sh 'sudo docker push ybm2i/devops-app:""$GIT_COMMIT""'
+          }
+ 
+        }
+      }
+//-----------------------------------------------------------------------------------------------------------
 }
 }
 
