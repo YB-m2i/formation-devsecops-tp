@@ -5,11 +5,11 @@ pipeline {
 
       stage('Build Artifact') {
             steps {
-              sh "mvn clean package -DskipTests=true"
+              sh "sudo mvn clean package -DskipTests=true"
               archive 'target/*.jar' //so that they can be downloaded later
             }
         }   
-//--------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
               stage('test unitaire ') {
                     steps {
                       catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
