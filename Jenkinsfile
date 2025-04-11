@@ -53,12 +53,12 @@ pipeline {
             
         
       }
-        ///////////////////////
+        /////////////////////////
  
     stage('Vulnerability Scan - Docker') {
           steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-              sh "mvn dependency-check:check"
+              sh "sudo mvn dependency-check:check"
             }
           }
           post {
