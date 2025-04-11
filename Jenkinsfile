@@ -13,7 +13,7 @@ pipeline {
               stage('test unitaire ') {
                     steps {
                       catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                      sh "mvn test"
+                      sh "sudo mvn test"
                       }
                     
                     }
@@ -28,7 +28,7 @@ pipeline {
             stage('Mutation Tests - PIT') {
               steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh "mvn org.pitest:pitest-maven:mutationCoverage"
+                sh "sudo mvn org.pitest:pitest-maven:mutationCoverage"
                 }
               }
               post{
