@@ -39,6 +39,20 @@ pipeline {
               }
         
             }
+//-------------------------------------------------------------------------------------------
+       stage('scan sonarqube') {
+        steps {
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh "sudo mvn clean verify sonar:sonar \
+              -Dsonar.projectKey=TP-YB \
+              -Dsonar.projectName='TP-YB' \
+              -Dsonar.host.url=http://devopstssr.eastus.cloudapp.azure.com:9998 \
+              -Dsonar.token=sqp_87f06e7844e609d5becc436d7afedff782873289"
+            }
+        }
+            
+        
+      }
         ///////////////////////
  
     stage('Vulnerability Scan - Docker') {
